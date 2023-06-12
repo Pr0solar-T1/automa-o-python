@@ -1,0 +1,79 @@
+# def ler():
+#     return pd.read_excel(arq,sheet_name='Sheet1')
+
+# tb = ler()
+
+# print(tb)
+
+
+# def buscar(item):
+#     if response.status_code == 200:
+#         data = response.json()
+
+#         if 'results' in data and len(data['results']) > 0:
+#             first_item = data['results'][item]
+#             second_item = data['results'][item]
+
+#             nome = first_item['name']
+#             status = second_item['status']
+
+#             values = {'Nome': nome,
+#                       'Status': status}
+
+
+#             print(nome, status)
+
+#             if planilha in tb:
+#                 t = pd.DataFrame(values)
+#             else:
+#                 print('planilha n encontrada!')
+
+#             tb.to_excel('planilha.xlsx', index=False)
+#             print(tb)
+
+#         else:
+#             print('esse bug é pior', response.status_code)
+
+# print(tb)
+
+
+
+
+
+if id_item == valores['id'] and name_item == valores['nome'] and specie_item == valores['specie'] and origin_item == valores['origin']:
+                    print('não à atualização')
+
+
+
+
+
+
+def atualizacao():
+    link = 'https://teste-api-593aa-default-rtdb.firebaseio.com/'
+
+    response_att = r.get(f'{link}.json') 
+
+    if response_att.status_code == 200:
+        data_att = response_att.json()
+
+        if 'item' in data_att and len(data_att['item']) > 0:
+            quant_att = 0
+
+            while quant_att < len(data_att['item']) -1:
+                quant_att +=1
+                id_item_att = data_att['item'][quant_att]['id']
+                name_item_att = data_att['item'][quant_att]['name']
+                specie_item_att = data_att['item'][quant_att]['specie']
+                origin_item_att = data_att['item'][quant_att]['origin']['name']
+
+                valores_att['id'] = id_item_att
+                valores_att['nome'] = name_item_att
+                valores_att['origin'] = origin_item_att
+                valores_att['specie'] = specie_item_att
+
+    for v_att in valores_att:
+        print(v_att)
+        # buscar()
+        tabela.loc[:, f'{v_att}'] = valores[f'{v_att}']
+    tabela.to_excel('./planilhas/planilha6.xlsx')
+    print(tabela)
