@@ -75,7 +75,7 @@ def att():
     print(valores)
 
     #timer de 3 segundos até carregar a função "Buscar"
-    t.sleep(3)
+    t.sleep(1)
     #executa de uma maneira que atualiza os valores da planilha (sem deixar somar no array, mas sim, substituindo os valores)
     buscar()
 
@@ -101,9 +101,11 @@ match continuar:
         while True:
             # buscar()
             #executa a função de atualizar infinitamente em um timer de 100 segundos (1m40s)
-            att()
-            t.sleep(100)
-
+            try:
+                att()
+                # t.sleep(5)
+            except Exception as e:
+                print(f'Ocorreu uma exceção: {str(e)}')
 
     #caso o usuario digite "n"
     case 'n':
